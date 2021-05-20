@@ -2,6 +2,7 @@
 Igor code for quantification of reconstructed neuronal morphologies
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 ////	QUANTIFY MORPHOLOGY
 ////	by Jesper Sjöström, begun 7 Nov 2010
 ////	Reads folders of SWC files, where each folder corresponds to one condition, and averages those.
