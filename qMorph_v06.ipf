@@ -4,21 +4,20 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////	QUANTIFY MORPHOLOGY
-////	by Jesper Sjšstršm, begun 7 Nov 2010
+////	by Jesper SjÅ¡strÅ¡m, begun 7 Nov 2010
 ////	Reads folders of SWC files, where each folder corresponds to one condition, and averages those.
 ////	See Buchanan et al Neuron 2012 for application
-////	First run "Set up bugfix
-", then run "Make reconstruction analysis panel"
+////	First run "Set up bugfix", then run "Make reconstruction analysis panel"
 ////	Populate LayerMappingTable with relevant data for layers, scaling, etc
 ////	Populate Rotation table to align slanted reconstructions with the right side up (e.g. apical dendrite)
 ////	LayerMappingTable is required, while Rotation table is optional.
 ////	This code requires Jesper's Tools v3, JespersTools_v03.ipf, to be located in /Igor procedures/.
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////	¥	Changed the way the soma compartments are read. If there is no soma tag, then use the critical 
+////	Â¥	Changed the way the soma compartments are read. If there is no soma tag, then use the critical 
 ////		diameter like before, otherwise use the soma tag.
 ////	Jesper, 2013-05-23
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////	¥	Tidied up dependencies of code for Libin Zhou's manuscript in Scientific Reports. Removed need for
+////	Â¥	Tidied up dependencies of code for Libin Zhou's manuscript in Scientific Reports. Removed need for
 ////		Cluster_v01.ipf, which was found in qMorph_v03.ipf.
 ////	Jesper, 2021-05-19
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -229,7 +228,7 @@ Function MakePVScatterGraph()
 	if (SourceIsHist)
 		SetScale d 0,0,"mm", PV_axonAreaAboveL5_2
 	else
-		SetScale d 0,0,"µm^2", PV_axonAreaAboveL5_2
+		SetScale d 0,0,"Âµm^2", PV_axonAreaAboveL5_2
 	endif
 	SetScale d 0,0,"%", PV_NMDARSupp, PV_NMDARSupp_2
 	
@@ -274,13 +273,13 @@ Function MakePVScatterGraph()
 		Label bottom "Axon length (\\U)"
 		SetAxis bottom -500,3000
 //		ModifyGraph prescaleExp(bottom)=3
-//		Label bottom "Axon hull area (\\u#2x10\\S4\\M µm\\S2\\M)"
+//		Label bottom "Axon hull area (\\u#2x10\\S4\\M Âµm\\S2\\M)"
 		ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,50}
 	else
 		Label bottom "Axon hull area (\\U)"
 		SetAxis bottom -15000,90000
 		ModifyGraph prescaleExp(bottom)=2
-		Label bottom "Axon hull area (\\u#2x10\\S4\\M µm\\S2\\M)"
+		Label bottom "Axon hull area (\\u#2x10\\S4\\M Âµm\\S2\\M)"
 		ModifyGraph manTick(bottom)={0,5,6,0},manMinor(bottom)={4,50}
 	endif
 	ModifyGraph fsize=10
@@ -1297,7 +1296,7 @@ Function DoReconStats(type1,type2,which)
 		if (noMatch)
 			WAVE	tableWave1 = $("Table_"+type1+"_"+num2str(i+1))
 			WaveStats/Q tableWave1
-			print JT_num2digstr(2,i)+" ======== "+currVar+" ========\tMean 1 =",V_avg,"±",V_sdev/sqrt(V_npnts),", n = ",V_npnts
+			print JT_num2digstr(2,i)+" ======== "+currVar+" ========\tMean 1 =",V_avg,"Â±",V_sdev/sqrt(V_npnts),", n = ",V_npnts
 		else
 			WAVE	tableWave1 = $("Table_"+type1+"_"+num2str(i+1))
 			WAVE	tableWave2 = $("Table_"+type2+"_"+num2str(i+1))
@@ -1315,9 +1314,9 @@ Function DoReconStats(type1,type2,which)
 				print JT_num2digstr(2,i)+" ======== "+currVar+" ========  p = "+num2str(pVal)+", p(WMW)="+num2str(pVal2)
 			endif
 			WaveStats/Q tableWave1
-			Print "Mean 1 =",V_avg,"±",V_sdev/sqrt(V_npnts),", n = ",V_npnts
+			Print "Mean 1 =",V_avg,"Â±",V_sdev/sqrt(V_npnts),", n = ",V_npnts
 			WaveStats/Q tableWave2
-			Print "Mean 2 =",V_avg,"±",V_sdev/sqrt(V_npnts),", n = ",V_npnts
+			Print "Mean 2 =",V_avg,"Â±",V_sdev/sqrt(V_npnts),", n = ",V_npnts
 		endif
 		if (which==-1)
 			i += 1
@@ -2576,18 +2575,18 @@ Function AnalyzeRecon(typeName,tableIndex)
 		Print "Dendrite hull area above L4:",DendrAreaAboveL4,"micron^2"
 		Print "Percentage axon hull area above L4:",PercAxonAreaAboveL4,"%"
 		Print "Percentage dendrite hull area above L4:",PercDendrAreaAboveL4,"%"
-		Print "Layer 5 thickness:",L5thickness,"µm"
-		Print "Layer 4 thickness:",L4thickness,"µm"
-		Print "Layer 234 thickness:",L234thickness,"µm"
-		Print "Soma Y center:",SomaYCenter,"µm"
+		Print "Layer 5 thickness:",L5thickness,"Âµm"
+		Print "Layer 4 thickness:",L4thickness,"Âµm"
+		Print "Layer 234 thickness:",L234thickness,"Âµm"
+		Print "Soma Y center:",SomaYCenter,"Âµm"
 		Print "Axon Max:",AxonMaxVal,"crossings"
-		Print "Axon critical radius:",AxonCritR,"µm"
+		Print "Axon critical radius:",AxonCritR,"Âµm"
 		Print "Dendr Max:",DendrMaxVal,"crossings"
-		Print "Dendr critical radius:",DendrCritR,"µm"
+		Print "Dendr critical radius:",DendrCritR,"Âµm"
 		Print "NMDAR supp:",NMDARSuppVal,"%"
-		Print "Imaged extent along x axis:",extX,"µm"
-		Print "Imaged extent along y axis:",extY,"µm"
-		Print "Imaged extent along y axis *above the origin*:",extYAboveOrig,"µm"
+		Print "Imaged extent along x axis:",extX,"Âµm"
+		Print "Imaged extent along y axis:",extY,"Âµm"
+		Print "Imaged extent along y axis *above the origin*:",extYAboveOrig,"Âµm"
 		Print "Total axon length above L5:",axonLenAboveL4/1e3,"mm"
 		Print "Total dendrite length above L5:",dendrLenAboveL4/1e3,"mm"
 	endif
@@ -2910,7 +2909,7 @@ Function ShowSholl(Suff,AppendFlag)
 	AppendToGraph/W=ShollPlot $("Dendr_Xings"+Suff) vs $("Dendr_radius"+Suff)
 	ModifyGraph RGB($("Dendr_Xings"+Suff))=(0,0,65535)
 	label left,"number of crossings"
-	label bottom,"radius (µm)"
+	label bottom,"radius (Âµm)"
 	SetAxis/A/N=1 left
 	Legend/C/N=text0/J/F=0/B=1/X=0.00/Y=0.00 "\\s("+"Axon_Xings"+Suff+") axon\r\\s("+"Dendr_Xings"+Suff+") dendr"
 
@@ -4224,8 +4223,8 @@ Function/C calcCorner(x1,y1,r1)
 	// x1*x2 + y1*y2 = 0				dot product is zero
 	// sqrt(x2^2 + y2^2) = r1			length is r1
 	// =>
-	// x2 = ±sqrt(r1^2*y1^2/(x1^2+y1^2))
-	// y2 = ±sqrt(r1^2*x1^2/(x1^2+y1^2))
+	// x2 = Â±sqrt(r1^2*y1^2/(x1^2+y1^2))
+	// y2 = Â±sqrt(r1^2*x1^2/(x1^2+y1^2))
 	
 	x2 = -signVar1*sqrt(r1^2*y1^2/(x1^2+y1^2))
 	y2 = signVar2*sqrt(r1^2*x1^2/(x1^2+y1^2))
