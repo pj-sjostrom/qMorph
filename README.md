@@ -11,3 +11,13 @@
 <BR>Populate Rotation table to align slanted reconstructions with the right side up (e.g. apical dendrite)
 <BR>LayerMappingTable is required, while Rotation table is optional.
 <BR><BR>This code requires Jesper's Tools v3, JespersTools_v03.ipf, to be located in /Igor Procedures/.
+
+<I>R code for Statistical analysis of Sholl profiles based on mixed-effect models</I>
+<BR><B>STATS ON SHOLL PROFILES</B>
+<BR>Run "Sholl_LMER.R" using e.g. data in "DataFiles.zip"
+<BR>Sample output is found in "PValueFiles.zip"
+<BR>Code adapted by Shawniya Alageswaran from
+<BR>Wilson, M. D., Sethi, S., Lein, P. J. & Keil, K. P.
+<BR><I>Valid statistical approaches for analyzing sholl data: Mixed effects
+<BR>versus simple linear models.</I> <B>Journal of Neuroscience Methods</B> 279, 33-43 (2017).
+
